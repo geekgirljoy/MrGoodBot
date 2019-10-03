@@ -9,8 +9,8 @@ body {
     overflow: hidden;
 }
 .pullright{
- float:right;
-text-align:right;
+    float:right;
+    text-align:right;
 } 
 </style>
 <body>
