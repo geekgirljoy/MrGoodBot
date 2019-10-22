@@ -1,3 +1,6 @@
+<?php
+// Do Stuffs Here
+?>
 <!DOCTYPE html>
 <html lang="en">
 <title>Mr Good Bot</title>
