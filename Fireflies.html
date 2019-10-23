@@ -21,7 +21,7 @@ function AnimateFireflies(){
    httpRequest.onreadystatechange = function(){
       if(httpRequest.readyState == 4 && httpRequest.status == 200){
          Forest.src = 'skins/current_face.png?' + Math.random();
-         setTimeout(AnimateFireflies, 250 * Math.floor(Math.random() * 11) + 1);
+         AnimateFireflies();
       }
    }
    
