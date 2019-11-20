@@ -1,16 +1,17 @@
 <?php
+include 'Functions.php';
 
 // Example Use (Set skin & generate a face):
 /*
-	http://localhost/MrGoodBot/Face.php?skin=Default
-	http://localhost/MrGoodBot/Face.php?skin=Nucleus
-	http://localhost/MrGoodBot/Face.php?skin=Pixel
-	http://localhost/MrGoodBot/Face.php?skin=Pumpkin
+    http://localhost/MrGoodBot/Face.php?Skin=Default
+    http://localhost/MrGoodBot/Face.php?Skin=Nucleus
+    http://localhost/MrGoodBot/Face.php?Skin=Pixel
+    http://localhost/MrGoodBot/Face.php?Skin=Pumpkin
 */
 
-// $_GET || $_POST skin
-if(isset($_REQUEST['skin'])){
-	$skin = $_REQUEST['skin'];
+// $_GET || $_POST Skin
+if(isset($_REQUEST['Skin'])){
+    $skin = $_REQUEST['Skin'];
 }
 else{
     $skin = 'Default';
@@ -68,3 +69,26 @@ imagedestroy($eyes);
 imagedestroy($eyebrow);
 imagedestroy($nose);
 imagedestroy($mouth);
+
+
+// Handle bot state for speech
+$conn = ConnectToMySQL();
+$GoodBotState = GetBotState($conn, 'Mr. Good Bot');
+$GoodBotState['HasSpeech'] = 0;
+if($GoodBotState['Speaking'] == 0){
+    
+    include 'Speech.php';
+    // Something_To_Say instantiated in Speech.php
+    $GoodBotState['HasSpeech'] = $Something_To_Say;
+
+    // Let the server know the bot will be speaking
+    if($Something_To_Say == 1){
+        $UpdatedBotState = $GoodBotState;
+        $UpdatedBotState['Speaking'] = 1;
+        SetBotState($conn, $UpdatedBotState); // update state
+    }
+}
+DisconnectFromMySQL($conn); 
+
+$GoodBotState = json_encode($GoodBotState); // Encode bot state as JSON
+echo $GoodBotState;// echo JSON for AJAX request
