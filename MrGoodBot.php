@@ -146,7 +146,7 @@ $lang = 'en'; // English
                 }
             }
             
-            // Variable to access/control the face image 
+            // Variable to access/control the Face image & Voice Audio
             var Face = document.getElementById('MrGoodBotSpeech-Face');
             var Voice = document.getElementById("MrGoodBotSpeech-Voice");
 
