@@ -21,12 +21,12 @@ else{ //  ShowIncomplete and ShowComplete parameters are set
 	$conn = ConnectToMySQL();
 	
 	// Load Incomplete sentences?
-	if($_REQUEST['ShowIncomplete'] == '1' ){
+	if($_REQUEST['ShowIncomplete'] == '1'){
         $Incomplete_Sentences = LoadInCompleteSentences($conn);
 	}
 	
 	// Load Complete sentences?
-	if($_REQUEST['ShowComplete'] == '1' ){
+	if($_REQUEST['ShowComplete'] == '1'){
         $Complete_Sentences = LoadCompleteSentences($conn);
 	}
 	
