@@ -74,8 +74,6 @@ th{
 <h1>Mr Good Bot Admin Interface</h1>
 <p>Welcome to the Admin Interface for Mr Good Bot</p>
 
-<button href="#" onclick="AdminReset()">Reset State</button><br><br>
-
 <audio id="Admin-Test-Audio"><source src="AdminTest.wav" type="audio/wav">Your browser doesn't support the audio element.</audio>
 
 <input type="checkbox" name="toggleIncomplete" onclick='ToggleViewStatments("incomplete")' <?php if($_REQUEST['ShowIncomplete'] === '1'){echo 'checked ';} ?>>Show Incomplete 
