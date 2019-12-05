@@ -21,10 +21,12 @@ function ConnectToMySQL(){
     return $conn;
 }
 
+
 // Close connection to database
 function DisconnectFromMySQL(&$conn){
     $conn->close();
 }
+
 
 // Return the state for a bot by name as an array
 function GetBotState(&$conn, $name){
@@ -46,6 +48,7 @@ function GetBotState(&$conn, $name){
     return NULL;
 }
 
+
 // Update the state of a bot by name
 // Use GetBotState() to obtain an array you can mutate
 // Make your changes then commit the state changes to the
@@ -57,6 +60,7 @@ function SetBotState(&$conn, $bot){
     $sql .= ' WHERE `botstate`.`ID` = ' . $bot['ID'];
     $conn->query($sql);
 }
+
 
 // Get an array of all Incomplete (`Status` = 0) sentences
 // If a "Name" variable is $_POST/$_GET = ($_REQUEST)
@@ -83,6 +87,7 @@ function LoadInCompleteSentences(&$conn){
     return array();
 }
 
+
 // Get an array of all Complete (`Status` = 1) sentences
 // If a "Name" variable is $_POST/$_GET = ($_REQUEST)
 // is set when this function runs it will limit query
@@ -106,6 +111,28 @@ function LoadCompleteSentences(&$conn){
     }
     return array();
 }
+
+
+// If a "statement" variable is $_POST/$_GET = ($_REQUEST)
+// is set when this function will add it to the statements table queue in the database
+// Warning! This is insecure on a public DB
+// DO NOT DEPLOY!!!! - without additional hardening against SQL Injection!
+function AddSentence(&$conn, $bot){	
+	// Check if posting a new Statement to Mr. Good Bot Database
+    if(isset($_REQUEST['statement'])){
+		// if not empty														   
+		if(strlen($_REQUEST['statement']) >  0){
+		    $statement = $conn->real_escape_string($_REQUEST['statement']);// prevent spellcheck
+																	       // (bot added apostrophes) 
+																	       // from breaking the DB
+		
+			$sql = "INSERT INTO `statements` (`ID`, `Bot`, `Status`, `Statement`) ";
+			$sql .= "VALUES (NULL, '$bot', '0', '$statement')";
+			$conn->query($sql);// Add statement
+		}
+	}
+}
+
 
 // This is used to reset the bot speech state to not speaking
 // If a "Name" variable is $_POST/$_GET = ($_REQUEST)
@@ -149,6 +176,6 @@ function NotSpeaking(&$conn){
     $conn->query($sql);
 }
 
-
 //////////////////////////////////
 // Add Functions Here
+
