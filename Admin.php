@@ -63,7 +63,7 @@ th{
 	border-style:solid;
 	border-width:1px;
 	overflow:hidden;
-	word-break:normal
+	word-break:normal;
 	border-color:black;
 	text-align:left;
 	vertical-align:top;
