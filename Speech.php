@@ -80,6 +80,12 @@ brew install espeak
 */
 
 
+// if ConnectToMySQL() not exist
+if(!function_exists('ConnectToMySQL')){
+    include 'Functions.php'; // Include Mr. Good Bot functions
+}
+
+
 
 
 /////////////////////////////////////////////////////
@@ -127,7 +133,7 @@ else{ // Try to get statement from database
 }
 
 // If there is something to say
-if(strlen($statement) > 1 ){
+if(strlen($statement) > 1){
 
     // What OS is the Server?
     if($OS === 'WIN'){
@@ -201,6 +207,10 @@ if(strlen($statement) > 1 ){
         }
     }
     $Something_To_Say = '1'; // Let Mr. Good Bot JS know to play statement
+	
+	if(isset($_REQUEST['admin'])){
+		echo $Something_To_Say;
+	}
 }
 else{
     $Something_To_Say = '0'; // No statement
