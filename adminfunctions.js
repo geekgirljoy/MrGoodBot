@@ -4,8 +4,8 @@ function AdminTestAudio(stmnt){
    
    httpRequest.onreadystatechange = function(){
       if(httpRequest.readyState == 4 && httpRequest.status == 200 && httpRequest.responseText == '1'){
-		   
-		 document.getElementById("Admin-Test-Audio").src = 'AdminTest.wav?' + Math.random();
+           
+         document.getElementById("Admin-Test-Audio").src = 'AdminTest.wav?' + Math.random();
          document.getElementById("Admin-Test-Audio").play();
       }
    }
@@ -18,14 +18,14 @@ function AdminTestAudio(stmnt){
 
 // Setup the URL GET variables when the page is loaded for the first time
 function NewPageLoad(){       
-	var url = location.href;    // Get current URL string
-	url += '?ShowIncomplete=1'; // Append the get parameter ShowIncomplete
-								// Set its value to 1
-	url += '&ShowComplete=1';   // Append the get parameter ShowComplete
-								// Set its value to 1
-	location.href = url;        // Reload the page
-								// This code will not run again because
-								// ShowIncomplete and ShowComplete will be set
+    var url = location.href;    // Get current URL string
+    url += '?ShowIncomplete=1'; // Append the get parameter ShowIncomplete
+                                // Set its value to 1
+    url += '&ShowComplete=1';   // Append the get parameter ShowComplete
+                                // Set its value to 1
+    location.href = url;        // Reload the page
+                                // This code will not run again because
+                                // ShowIncomplete and ShowComplete will be set
 }
 
 
@@ -49,17 +49,39 @@ function BitShiftToggle(value){
 //
 // New URL: http://localhost/MrGoodBot/Admin.php?ShowIncomplete=1&ShowComplete=0
 function ToggleViewStatments(type){
-	// Get params from URL
-	var params = new URLSearchParams(location.search);
-	
-	// Toggle params
-	if(type == 'incomplete'){
-		params.set('ShowIncomplete', BitShiftToggle(params.get('ShowIncomplete')));
-	}
-	else if(type == 'complete'){
-		params.set('ShowComplete', BitShiftToggle(params.get('ShowComplete')));
-	}
+    // Get params from URL
+    var params = new URLSearchParams(location.search);
     
-	// Reload page with new params
+    // Toggle params
+    if(type == 'incomplete'){
+        params.set('ShowIncomplete', BitShiftToggle(params.get('ShowIncomplete')));
+    }
+    else if(type == 'complete'){
+        params.set('ShowComplete', BitShiftToggle(params.get('ShowComplete')));
+    }
+    
+    // Reload page with new params
     location.href = location.pathname + '?' + params.toString();  
+}
+
+//  Use AddToStatement to append a Quick Say statement to the statement field
+function AddToStatement(statement){
+    var currentStatment = document.getElementById("statement").value;
+    document.getElementById("statement").value = (currentStatment + ' ' + statement).trim();
+}
+
+function AdminReset(){
+    var httpRequest = new XMLHttpRequest();
+
+
+    httpRequest.onreadystatechange = function(){
+    if(httpRequest.readyState == 4 && httpRequest.status == 200){
+           
+         ToggleViewStatments('');
+      }
+   }
+    
+       httpRequest.open('GET', 'NotSpeaking.php', true);
+       httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+       httpRequest.send();
 }
