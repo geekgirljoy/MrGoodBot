@@ -1,7 +1,7 @@
 # MrGoodBot
 Mr. Good Bot is a "Speaking Robot” and in this tutorial series we learn to build a cross-platform wrapper in PHP for common TTS API. 
 
-## Mr. Good Bot
+## Mr. Good Bot Posts
 
    * [Mr Good Bot](https://geekgirljoy.wordpress.com/2019/09/25/mr-good-bot/)
    * [Mr Good Bot – Front-end](https://geekgirljoy.wordpress.com/2019/09/30/mr-good-bot-front-end/)
