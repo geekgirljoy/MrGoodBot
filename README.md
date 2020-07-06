@@ -6,7 +6,7 @@ Mr. Good Bot is a "Speaking Robot” and in this tutorial series we learn to bui
 
 # Troubleshooting
 
-If you are having trouble on windows make sure to add:
+* If you are having trouble on windows make sure to add:
 
 ```
 extension=php_com_dotnet
@@ -14,6 +14,13 @@ extension=php_com_dotnet
 ```
 
 To your php.ini file.
+
+
+* You may need to grant "full control" permissions to all files and subfolders for users accessing the MrGoodBot folder.
+
+* Check the 'botstate' table in the MrGoodBot database and reset the 'speaking' field to 0 if it is 1.
+
+
 
 
 ## Mr. Good Bot Posts
