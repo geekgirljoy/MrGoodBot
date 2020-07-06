@@ -6,7 +6,7 @@ Mr. Good Bot is a "Speaking Robot” and in this tutorial series we learn to bui
 
 # Troubleshooting
 
-Make sure to add:
+If you are having trouble on windows make sure to add:
 
 ```
 extension=php_com_dotnet
