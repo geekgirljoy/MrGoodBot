@@ -6,7 +6,7 @@ Mr. Good Bot is a "Speaking Robot” and in this tutorial series we learn to bui
 
 # Troubleshooting
 
-* If you are having trouble on windows make sure to add thwe following to your php.ini file:
+* If you are having trouble on Windows make sure to add the following to your php.ini file:
 
 ```
 extension=php_com_dotnet
